@@ -1,0 +1,27 @@
+name: CI Pipeline
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print CI message
+        run: echo "CI Running"
+
+      - name: Create report file
+        run: |
+          echo "CI run date: $(date)" > report.txt
+          echo "Repository: $GITHUB_REPOSITORY" >> report.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-report
+          path: report.txt
