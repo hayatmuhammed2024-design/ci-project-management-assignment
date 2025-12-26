@@ -4,6 +4,10 @@ on:
   pull_request:
     types: [opened]
 
+permissions:
+  contents: read
+  pull-requests: write   # <- important, allows workflow to add labels
+
 jobs:
   add-label:
     runs-on: ubuntu-latest
